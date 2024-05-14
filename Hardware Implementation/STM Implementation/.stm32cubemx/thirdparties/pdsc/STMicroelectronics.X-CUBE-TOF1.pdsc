@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>STMicroelectronics</vendor>
+    <name>X-CUBE-TOF1</name>
+    <description>Drivers and sample applications for ToF sensors</description>
+    <url>http://sw-center.st.com/packs/x-cube/</url>
+    <license>en.DM00484327.pdf</license>
+    <releases>
+        <release version="1.0.0">First release of the X-CUBE-TOF1 software pack.
+
+Include support for the following STM32 expansion boards:
+- X-NUCLEO-53L3A2
+Include support for the following board part:
+- VL53L3CX
+- VL53L3CX-SATEL (breakout board)
+
+This pack sample applications have been generated with STM32CubeMX v6.2.0
+This pack is compatible with STM32CubeMX v6.2.0</release>
+    </releases>
+    <keywords>
+        <keyword>ARM</keyword>
+        <keyword>Cortex-M</keyword>
+        <keyword>STMicroelectronics</keyword>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+        <keyword>ToF</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="Board Support">Board Support</description>
+        <description Cclass="Device">Device</description>
+        <description Cclass="Board Part">The ToF components support class</description>
+        <description Cclass="Board Extension">Board Extension</description>
+    </taxonomy>
+    <conditions>
+        <condition id="Cortex-M Device">
+            <description>Cortex-M processor based device</description>
+            <accept Dcore="Cortex-M0"/>
+            <accept Dcore="Cortex-M0+"/>
+            <accept Dcore="Cortex-M3"/>
+            <accept Dcore="Cortex-M4"/>
+            <accept Dcore="Cortex-M7"/>
+            <accept Dcore="Cortex-M33"/>
+        </condition>
+        <condition id="RANGING_SENSOR">
+            <accept Cclass="Board Part" Cgroup="Ranging"/>
+        </condition>
+        <condition id="Exclude custom TOF components">
+            <deny Cclass="Board Part" Cgroup="Ranging"/>
+        </condition>
+        <condition id="VL53L3CX Condition">
+            <description>Cortex-M Device and board setup (VL53L3CX Driver)</description>
+            <require condition="Cortex-M Device"/>
+            <require condition="Exclude Applications for 53L3A2"/>
+            <deny Cclass="Board Extension" Cgroup="53L3A2"/>
+        </condition>
+        <condition id="53L3A2 Condition">
+            <require condition="Exclude custom TOF components"/>
+            <require condition="Cortex-M Device"/>
+        </condition>
+        <condition id="53L3A2 Examples Condition">
+            <require Cclass="Board Extension" Cgroup="53L3A2"/>
+            <require condition="Cortex-M Device"/>
+            <require condition="Exclude custom TOF components"/>
+        </condition>
+        <condition id="CM0_GCC">
+            <require Dcore="Cortex-M0"/>
+            <require Tcompiler="GCC"/>
+        </condition>
+        <condition id="CM0+_GCC">
+            <require Dcore="Cortex-M0+"/>
+            <require Tcompiler="GCC"/>
+        </condition>
+        <condition id="CM3_GCC">
+            <require Dcore="Cortex-M3"/>
+            <require Tcompiler="GCC"/>
+        </condition>
+        <condition id="CM4_GCC">
+            <require Dcore="Cortex-M4"/>
+            <require Tcompiler="GCC"/>
+        </condition>
+        <condition id="CM7_GCC">
+            <require Dcore="Cortex-M7"/>
+            <require Tcompiler="GCC"/>
+        </condition>
+        <condition id="CM0_IAR">
+            <require Dcore="Cortex-M0"/>
+            <require Tcompiler="IAR"/>
+        </condition>
+        <condition id="CM0+_IAR">
+            <require Dcore="Cortex-M0+"/>
+            <require Tcompiler="IAR"/>
+        </condition>
+        <condition id="CM3_IAR">
+            <require Dcore="Cortex-M3"/>
+            <require Tcompiler="IAR"/>
+        </condition>
+        <condition id="CM4_IAR">
+            <require Dcore="Cortex-M4"/>
+            <require Tcompiler="IAR"/>
+        </condition>
+        <condition id="CM7_IAR">
+            <require Dcore="Cortex-M7"/>
+            <require Tcompiler="IAR"/>
+        </condition>
+        <condition id="CM0_Keil">
+            <require Dcore="Cortex-M0"/>
+            <require Tcompiler="ARMCC"/>
+        </condition>
+        <condition id="CM0+_Keil">
+            <require Dcore="Cortex-M0+"/>
+            <require Tcompiler="ARMCC"/>
+        </condition>
+        <condition id="CM3_Keil">
+            <require Dcore="Cortex-M3"/>
+            <require Tcompiler="ARMCC"/>
+        </condition>
+        <condition id="CM4_Keil">
+            <require Dcore="Cortex-M4"/>
+            <require Tcompiler="ARMCC"/>
+        </condition>
+        <condition id="CM7_Keil">
+            <require Dcore="Cortex-M7"/>
+            <require Tcompiler="ARMCC"/>
+        </condition>
+        <condition id="VL53L3CX HW Condition">
+            <description>Condition for sample applications</description>
+            <require Cbundle="STM32Cube_Custom_BSP_Drivers" Cclass="Board Support" Cgroup="Custom" Csub="RANGING_SENSOR"/>
+            <require Cclass="Board Part" Cgroup="Ranging" Csub="VL53L3CX"/>
+            <deny Cclass="Board Extension" Cgroup="53L3A2"/>
+        </condition>
+        <condition id="RANGING_SENSOR Condition">
+            <accept Cclass="Board Part" Cgroup="Ranging"/>
+            <require condition="Cortex-M Device"/>
+            <require condition="Exclude Applications for 53L3A2"/>
+            <deny Cclass="Board Extension" Cgroup="53L3A2"/>
+        </condition>
+        <condition id="Exclude Applications for 53L3A2">
+            <deny Cbundle="TOF1_Applications" Cclass="Device" Cvariant="53L3A2_SimpleRanging"/>
+            <deny Cbundle="TOF1_Applications" Cclass="Device" Cvariant="53L3A2_MultiSensorRanging"/>
+        </condition>
+        <condition id="CM33_GCC">
+            <require Dcore="Cortex-M33"/>
+            <require Tcompiler="GCC"/>
+        </condition>
+        <condition id="CM33_IAR">
+            <require Dcore="Cortex-M33"/>
+            <require Tcompiler="IAR"/>
+        </condition>
+        <condition id="CM33_Keil">
+            <require Dcore="Cortex-M33"/>
+            <require Tcompiler="ARMCC"/>
+        </condition>
+    </conditions>
+    <components>
+        <component Cclass="Board Extension" Cgroup="53L3A2" Cversion="1.0.0" condition="53L3A2 Condition" maxInstances="1">
+            <description>X-NUCLEO-53L3A2 BSP drivers</description>
+            <RTE_Components_h>#define _53L3A2</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api_calibration.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api_calibration.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api_core.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api_core.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api_debug.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api_debug.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api_preset_modes.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api_preset_modes.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_core.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_core.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_core_support.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_core_support.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_def.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_dmax.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_dmax.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_dmax_private_structs.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_dmax_structs.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_error_codes.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_error_exceptions.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_algos_gen3.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_algos_gen3.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_algos_gen4.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_algos_gen4.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_char.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_char.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_core.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_core.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_funcs.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_funcs.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_map.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_private_structs.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_structs.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_ll_def.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_ll_device.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_nvm.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_nvm.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_nvm_debug.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_nvm_debug.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_nvm_map.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_nvm_structs.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_preset_setup.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_register_funcs.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_register_funcs.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_register_map.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_register_settings.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_register_structs.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_sigma_estimate.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_sigma_estimate.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_silicon_core.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_silicon_core.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_tuning_parm_defaults.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_wait.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_wait.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_xtalk.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_xtalk.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_xtalk_private_structs.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform_init.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform_ipp.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform_ipp.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform_ipp_imports.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform_log.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform_log.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform_user_config.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform_user_data.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform_user_defines.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_types.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/vl53l3cx.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/vl53l3cx.h"/>
+                <file category="doc" name="Drivers/BSP/Components/vl53l3cx/modules/VL53LX_API.chm"/>
+                <file category="source" name="Drivers/BSP/53L3A2/53l3a2.c"/>
+                <file category="header" name="Drivers/BSP/53L3A2/53l3a2.h"/>
+                <file category="header" name="Drivers/BSP/53L3A2/53l3a2_conf_template.h"/>
+                <file category="source" name="Drivers/BSP/53L3A2/53l3a2_ranging_sensor.c"/>
+                <file category="header" name="Drivers/BSP/53L3A2/53l3a2_ranging_sensor.h"/>
+                <file category="doc" name="Drivers/BSP/53L3A2/readme.txt"/>
+                <file category="doc" name="Drivers/BSP/53L3A2/Release_notes.html"/>
+                <file category="other" name="Drivers/BSP/53L3A2/Release_notes.md"/>
+                <file category="other" name="Drivers/BSP/53L3A2/_htmresc/Add button.svg"/>
+                <file category="other" name="Drivers/BSP/53L3A2/_htmresc/favicon.png"/>
+                <file category="other" name="Drivers/BSP/53L3A2/_htmresc/mini-st_2020.css"/>
+                <file category="other" name="Drivers/BSP/53L3A2/_htmresc/st_logo_2020.png"/>
+                <file category="other" name="Drivers/BSP/53L3A2/_htmresc/Update.svg"/>
+                <file category="other" name="Drivers/BSP/Components/vl53l3cx/_htmresc/Add button.svg"/>
+                <file category="other" name="Drivers/BSP/Components/vl53l3cx/_htmresc/favicon.png"/>
+                <file category="other" name="Drivers/BSP/Components/vl53l3cx/_htmresc/mini-st_2020.css"/>
+                <file category="other" name="Drivers/BSP/Components/vl53l3cx/_htmresc/st_logo_2020.png"/>
+                <file category="other" name="Drivers/BSP/Components/vl53l3cx/_htmresc/Update.svg"/>
+                <file category="doc" name="Drivers/BSP/Components/vl53l3cx/Release_notes.html"/>
+                <file category="other" name="Drivers/BSP/Components/vl53l3cx/Release_notes.md"/>
+                <file category="doc" name="Drivers/BSP/Components/vl53l3cx/modules/LXReleaseNotes.txt"/>
+                <file category="header" name="Drivers/BSP/Components/Common/ranging_sensor.h"/>
+                <file category="doc" name="Drivers/BSP/53L3A2/53L3A2_API_v1.0.0.chm"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="Ranging" Csub="VL53L3CX" Cversion="1.0.0" condition="VL53L3CX Condition" maxInstances="1">
+            <description>VL53L3CX Component Driver</description>
+            <deprecated>true</deprecated>
+            <RTE_Components_h>#define VL53L3CX</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api_calibration.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api_calibration.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api_core.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api_core.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api_debug.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api_debug.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api_preset_modes.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_api_preset_modes.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_core.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_core.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_core_support.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_core_support.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_def.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_dmax.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_dmax.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_dmax_private_structs.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_dmax_structs.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_error_codes.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_error_exceptions.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_algos_gen3.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_algos_gen3.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_algos_gen4.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_algos_gen4.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_char.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_char.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_core.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_core.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_funcs.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_funcs.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_map.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_private_structs.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_hist_structs.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_ll_def.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_ll_device.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_nvm.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_nvm.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_nvm_debug.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_nvm_debug.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_nvm_map.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_nvm_structs.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_preset_setup.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_register_funcs.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_register_funcs.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_register_map.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_register_settings.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_register_structs.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_sigma_estimate.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_sigma_estimate.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_silicon_core.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_silicon_core.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_tuning_parm_defaults.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_wait.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_wait.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_xtalk.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_xtalk.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/modules/vl53lx_xtalk_private_structs.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform_init.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform_ipp.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform_ipp.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform_ipp_imports.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform_log.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform_log.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform_user_config.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform_user_data.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_platform_user_defines.h"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/porting/vl53lx_types.h"/>
+                <file category="source" name="Drivers/BSP/Components/vl53l3cx/vl53l3cx.c"/>
+                <file category="header" name="Drivers/BSP/Components/vl53l3cx/vl53l3cx.h"/>
+                <file category="doc" name="Drivers/BSP/Components/vl53l3cx/modules/VL53LX_API.chm"/>
+                <file category="doc" name="Drivers/BSP/Components/vl53l3cx/Release_notes.html"/>
+                <file category="other" name="Drivers/BSP/Components/vl53l3cx/Release_notes.md"/>
+                <file category="other" name="Drivers/BSP/Components/vl53l3cx/_htmresc/Add button.svg"/>
+                <file category="other" name="Drivers/BSP/Components/vl53l3cx/_htmresc/favicon.png"/>
+                <file category="other" name="Drivers/BSP/Components/vl53l3cx/_htmresc/mini-st_2020.css"/>
+                <file category="other" name="Drivers/BSP/Components/vl53l3cx/_htmresc/st_logo_2020.png"/>
+                <file category="other" name="Drivers/BSP/Components/vl53l3cx/_htmresc/Update.svg"/>
+                <file category="doc" name="Drivers/BSP/Components/vl53l3cx/modules/LXReleaseNotes.txt"/>
+            </files>
+        </component>
+        <bundle Cbundle="TOF1_Applications" Cclass="Device" Cversion="1.0.0">
+            <description>TOF application library</description>
+            <doc>Documentation/STMicroelectronics.X-CUBE-TOF1_GettingStarted.pdf</doc>
+            <component Cgroup="Application" Cvariant="53L3A2_SimpleRanging" condition="53L3A2 Examples Condition" isDefaultVariant="true" maxInstances="1">
+                <description>Simple ranging sample appliation for X-NUCLEO-53L3A2</description>
+                <RTE_Components_h>#define _53L3A2_SIMPLE_RANGING</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="53L3A2_MultiSensorRanging" condition="53L3A2 Examples Condition" maxInstances="1">
+                <description>Multi sensor ranging sample appliation for X-NUCLEO-53L3A2</description>
+                <RTE_Components_h>#define _53L3A2_MULTI_SENSOR_RANGING</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="VL53L3CX_SimpleRanging" condition="VL53L3CX HW Condition" maxInstances="1">
+                <description>Simple Ranging example for VL53L3CX</description>
+                <RTE_Components_h>#define VL53L3CX_SIMPLE_RANGING</RTE_Components_h>
+                <files/>
+            </component>
+        </bundle>
+        <bundle Cbundle="STM32Cube_Custom_BSP_Drivers" Cclass="Board Support" Cversion="1.0.0">
+            <description>ToF Board Support Package for custom boards</description>
+            <doc>Documentation/STMicroelectronics.X-CUBE-TOF1_GettingStarted.pdf</doc>
+            <component Cgroup="Custom" Csub="RANGING_SENSOR" condition="RANGING_SENSOR Condition" maxInstances="1">
+                <description>BSP for Ranging Sensor</description>
+                <RTE_Components_h>#define BSP_RANGING_SENSOR</RTE_Components_h>
+                <files/>
+            </component>
+        </bundle>
+    </components>
+</package>

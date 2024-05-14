@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>STMicroelectronics</vendor>
+    <name>X-CUBE-DISPLAY</name>
+    <description>Expansion Pack for display modules</description>
+    <url>http://sw-center.st.com/packs/x-cube/</url>
+    <license>en.DM00218346.pdf</license>
+    <supportContact>https://community.st.com/</supportContact>
+    <releases>
+        <release date="2020-10-08" version="1.0.0">- This version is compatible with STM32CubeMX V6.0.0</release>
+    </releases>
+    <keywords>
+        <keyword>Cortex-M</keyword>
+        <keyword>STMicroelectronics</keyword>
+        <keyword>CUBEMX_MIGRATION_CAPABILITY</keyword>
+        <keyword>DISPLAY</keyword>
+        <keyword>CUBE_RULES_COMPLIANT</keyword>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="Device">Device</description>
+        <description Cclass="Extension Board">Extension Board</description>
+    </taxonomy>
+    <conditions>
+        <condition id="Cortex-M Devices">
+            <description>Cortex-M processor based device: Cortex-M0, Cortex-M0+, Cortex-M4, Cortex-M7 and Cortex-M33</description>
+            <accept Dcore="Cortex-M0+"/>
+        </condition>
+        <condition id="GFX01M1_Condition">
+            <require condition="Cortex-M Devices"/>
+        </condition>
+        <condition id="GFX01M1_HelloWorld_Condition">
+            <description>Condition for GFX01M1_HelloWorld Application</description>
+            <require condition="GFX01M1_Condition"/>
+            <require Cclass="Extension Board" Cgroup="GFX01M1"/>
+        </condition>
+    </conditions>
+    <components>
+        <component Cclass="Extension Board" Cgroup="GFX01M1" Cversion="1.0.0" condition="GFX01M1_Condition" isDefaultVariant="true" maxInstances="1">
+            <description>Drivers for GFX01M1 expansion board</description>
+            <RTE_Components_h>#define DISPLAY_GFX01M1
+#define DISPLAY_LCD_COMP_ILI9341
+#define DISPLAY_MEM_COMP_MX25L6433F</RTE_Components_h>
+            <files>
+                <file category="include" name="Drivers/BSP/Components/Common/"/>
+                <file category="header" name="Drivers/BSP/Components/Common/lcd.h"/>
+                <file category="doc" name="Drivers/BSP/Components/Common/Release_Notes.html"/>
+                <file category="source" name="Drivers/BSP/Components/ili9341/ili9341.c"/>
+                <file category="header" name="Drivers/BSP/Components/ili9341/ili9341.h"/>
+                <file category="source" name="Drivers/BSP/Components/ili9341/ili9341_regs.c"/>
+                <file category="header" name="Drivers/BSP/Components/ili9341/ili9341_regs.h"/>
+                <file category="doc" name="Drivers/BSP/Components/ili9341/Release_Notes.html"/>
+            </files>
+        </component>
+        <bundle Cbundle="Application" Cclass="Device" Cversion="1.0.0">
+            <description>Graphics Applications</description>
+            <doc>Documentation/STMicroelectronics.X-CUBE-DISPLAY_GettingStarted.pdf</doc>
+            <component Capiversion="1.0.0" Cgroup="Application" Cvariant="GFX01M1_HelloWorld" condition="GFX01M1_HelloWorld_Condition" isDefaultVariant="true" maxInstances="1">
+                <description>HelloWorld Application for the X-NUCLEO-GFX01M1 module</description>
+                <files>
+                    <file category="doc" name="Projects/NUCLEO-G071RB/Applications/GFX01M1_HelloWorld/ReadMe.txt"/>
+                </files>
+            </component>
+        </bundle>
+    </components>
+    <examples>
+        <example doc="ReadMe.txt" folder="Projects/NUCLEO-G071RB/Applications/GFX01M1_HelloWorld" name="GFX01M1_HelloWorld" public="true" version="1.0.0">
+            <description>Simple HelloWorld example for the X-NUCLEO-GFX01M1</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-G071RB" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="GFX01M1_HelloWorld" load="X-NUCLEO-GFX01M1.ioc" name="stm32cubemx"/>
+            </project>
+            <attributes>
+                <component Cclass="Extension Board" Cgroup="GFX01M1" Cvendor="STMicroelectronics" Cversion="1.0.0"/>
+            </attributes>
+        </example>
+    </examples>
+</package>

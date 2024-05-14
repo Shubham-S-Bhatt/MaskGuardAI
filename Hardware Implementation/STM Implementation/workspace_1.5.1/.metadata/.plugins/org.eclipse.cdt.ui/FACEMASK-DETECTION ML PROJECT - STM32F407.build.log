@@ -1,0 +1,17 @@
+23:35:34 **** Incremental Build of configuration Debug for project FACEMASK-DETECTION ML PROJECT - STM32F407 ****
+make -j8 all 
+arm-none-eabi-gcc -o "FACEMASK-DETECTION ML PROJECT - STM32F407.elf" @"objects.list"  -l:NetworkRuntime600_CM4_GCC.a -mcpu=cortex-m4 -T"C:\Users\shubh\STM32CubeIDE\workspace_1.5.1\FACEMASK-DETECTION ML PROJECT - STM32F407\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FACEMASK-DETECTION ML PROJECT - STM32F407.map" -Wl,--gc-sections -static -L../Middlewares/ST/AI/Lib -Wl,--wrap=malloc -Wl,--wrap=free -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+c:/st/stm32cubeide_1.5.1/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.5.0.202011040924/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-dtoa.o): In function `_dtoa_r':
+dtoa.c:(.text._dtoa_r+0x20): undefined reference to `__wrap_malloc'
+c:/st/stm32cubeide_1.5.1/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.5.0.202011040924/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o): In function `_Balloc':
+mprec.c:(.text._Balloc+0xc): undefined reference to `__wrap_malloc'
+c:/st/stm32cubeide_1.5.1/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.5.0.202011040924/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o): In function `_Bfree':
+mprec.c:(.text._Bfree+0xc): undefined reference to `__wrap_malloc'
+c:/st/stm32cubeide_1.5.1/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.5.0.202011040924/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libc_nano.a(lib_a-mprec.o): In function `__pow5mult':
+mprec.c:(.text.__pow5mult+0x2a): undefined reference to `__wrap_malloc'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:60: FACEMASK-DETECTION ML PROJECT - STM32F407.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+
+23:35:35 Build Failed. 5 errors, 0 warnings. (took 925ms)
+
