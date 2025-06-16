@@ -2,7 +2,10 @@
 
 **Real-Time Face Mask Detection using Machine Learning and Hardware Integration**
 
-![Banner Image](Results/IMG-20210606-WA0053.jpg)
+
+<p align="center">
+  <img src="test_img.jpg" alt="Banner Image" width="500"/>
+</p>
 
 ---
 
@@ -85,9 +88,14 @@ To train from scratch:
 ```bash
 python ML_Model/train_model.py   --dataset data/face_mask_dataset/   --epochs 20   --batch-size 32   --model-output ML_Model/mobilenetv2_mask_detector.h5
 ```
+<p align="center">
+  <img src="accuracy.png" alt="Accuracy" width="400"/>
+</p>
 
-![Training Accuracy Curves](Results/ACCURACY vs EPOCH.png)
-![Training Loss Curves](Results/LOSS vs EPOCH.png)
+<p align="center">
+  <img src="loss.png" alt="Loss" width="400"/>
+</p>
+
 ---
 
 ## 🤖 Inference & Real-Time Detection
@@ -96,7 +104,10 @@ python ML_Model/train_model.py   --dataset data/face_mask_dataset/   --epochs 20
 ```bash
 python ML_Model/detect_mask_image.py   --image data/test/without_mask.jpg   --model ML_Model/mobilenetv2_mask_detector.h5
 ```
-![Sample Detection](Results/IMG-20210607-WA0000.jpg)
+<p align="center">
+  <img src="test_img.jpg" alt="Sample Detection" width="400"/>
+</p>
+
 
 ### Video / Webcam
 ```bash
