@@ -4,7 +4,7 @@
 
 
 <p align="center">
-  <img src="test_img.jpg" alt="Banner Image" width="500"/>
+  <img src="Results/test_img.jpg" alt="Banner Image" width="500"/>
 </p>
 
 ---
@@ -89,11 +89,11 @@ To train from scratch:
 python ML_Model/train_model.py   --dataset data/face_mask_dataset/   --epochs 20   --batch-size 32   --model-output ML_Model/mobilenetv2_mask_detector.h5
 ```
 <p align="center">
-  <img src="accuracy.png" alt="Accuracy" width="400"/>
+  <img src="Results/accuracy.png" alt="Accuracy" width="400"/>
 </p>
 
 <p align="center">
-  <img src="loss.png" alt="Loss" width="400"/>
+  <img src="Results/loss.png" alt="Loss" width="400"/>
 </p>
 
 ---
@@ -105,7 +105,7 @@ python ML_Model/train_model.py   --dataset data/face_mask_dataset/   --epochs 20
 python ML_Model/detect_mask_image.py   --image data/test/without_mask.jpg   --model ML_Model/mobilenetv2_mask_detector.h5
 ```
 <p align="center">
-  <img src="test_img.jpg" alt="Sample Detection" width="400"/>
+  <img src="Results/test_img.jpg" alt="Sample Detection" width="400"/>
 </p>
 
 
